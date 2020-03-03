@@ -4,10 +4,20 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/matt.richards/.oh-my-zsh
 
+export NVM_DIR="/Users/matt.richards/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="kolo"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,21 +61,17 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, docker, gradle, ng, thefuck)
+plugins=(
+  git, zsh-autosuggestions, docker, gradle, ng, thefuck
+)
+
+eval $(thefuck --alias)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-DEFAULT_USER=matt.richards
+
 # export MANPATH="/usr/local/man:$MANPATH"
-
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
-export GRAILS_HOME=~/Dev/frameworks/grails-2.1.1
-export PATH=$PATH:$GRAILS_HOME/bin:$JAVA_HOME/bin
-export IDEA_JDK=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
-
-export NVM_DIR="/Users/matt.richards/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -92,16 +98,16 @@ export NVM_DIR="/Users/matt.richards/.nvm"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-###-tns-completion-start-###
-if [ -f /Users/matt.richards/.tnsrc ]; then
-    source /Users/matt.richards/.tnsrc
-fi
-###-tns-completion-end-###
+export NVM_DIR="/Users/matt.richards/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-###-appbuilder-completion-start-###
-if [ -f /Users/matt.richards/.appbuilderrc ]; then
-    source /Users/matt.richards/.appbuilderrc
-fi
-###-appbuilder-completion-end-###
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
+export JAVA_HOME
+export PATH=$PATH:$JAVA_HOME/bin
+. ~/Dev/tools/z/z.sh
 
-eval $(thefuck --alias)
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/matt.richards/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/matt.richards/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/matt.richards/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/matt.richards/google-cloud-sdk/completion.zsh.inc'; fi
